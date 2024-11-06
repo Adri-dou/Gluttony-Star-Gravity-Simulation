@@ -53,7 +53,7 @@ while running:
                         # Create a new star with the mass u want
                         new_star = Star(input_position[0], input_position[1], mass)
                         stars.append(new_star)
-                    elif mass < 1:
+                    elif mass < 0:
                         print("Come on, have you ever seen a star with negative mass ?")
                     else:
                         mass = 1
@@ -108,7 +108,7 @@ while running:
     pygame.display.flip()  # Update the display
 
     # Cap the frame rate
-    clock.tick(30)
+    clock.tick(60)
 
 # Quit Pygame
 pygame.quit()

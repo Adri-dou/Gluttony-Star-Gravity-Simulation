@@ -8,10 +8,12 @@ from constants import *
 class Star:
 
     def __init__(self, x, y, mass):
-        self.x = x  # X position of the star
-        self.y = y  # Y position of the star
-        self.mass = mass  # Mass of the star (affects gravitational pull and size)
-        self.radius = math.sqrt(mass)  # Radius of the star (for drawing purposes)
+        # Coordinates
+        self.x = x
+        self.y = y
+
+        self.mass = mass  # affects gravitational pull and size
+        self.radius = math.sqrt(mass)  # size on the screen in px
         
         # Initialize velocity and acceleration as vectors
         self.velocity_x = 0  # X component of velocity
@@ -107,4 +109,5 @@ class Star:
         new_star = Star(new_x, new_y, combined_mass)
         new_star.velocity_x = new_velocity_x
         new_star.velocity_y = new_velocity_y
+        
         return new_star

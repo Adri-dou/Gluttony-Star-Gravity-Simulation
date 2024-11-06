@@ -17,6 +17,7 @@ Be aware that this model can be used like a N-Body simulation with a small amoun
 - **Colors**: Each star shall have a different color, making it easier to follow.
 - **Exploding supernovas**: When destroying a big star, it explodes in multiple smaller ones (should it explode by itself when reaching a certain mass?).
 - **Parameters control**: Possibility to manage and tweak parameters and features within the game in real time such as gravity scaling, automatic explosions, disable collisions...
+- **Vectors**: Option to display the velocity and acceleration vectors of each star.
 
 ## Getting Started
 
