@@ -12,6 +12,12 @@ Be aware that this model can be used like a N-Body simulation with a small amoun
     - When stars get too close, they merge into a larger star, preserving mass and momentum (gluttonous stars).
     - If a star moves too far off-screen, it will be removed from the simulation.
 
+### Future features to implement
+
+- **Colors**: Each star shall have a different color, making it easier to follow.
+- **Exploding supernovas**: When destroying a big star, it explodes in multiple smaller ones (should it explode by itself when reaching a certain mass?).
+- **Parameters control**: Possibility to manage and tweak parameters and features within the game in real time such as gravity scaling, automatic explosions, disable collisions...
+
 ## Getting Started
 
 ### Prerequisites
