@@ -7,7 +7,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 # Gravitational constant
-G = 6.67430
+G = 6.67430 # I scaled it up for better visualization
 
 # Simulation parameters
 OFF_SCREEN_BUFFER = 500  # Distance beyond which stars are removed

@@ -72,26 +72,27 @@ while running:
                 # Append typed character to input text
                 input_text += event.unicode
 
-    # Update each star's gravitational interaction
-    collided_stars = []
-    new_stars = []
-    for star in stars:
-        for other_star in stars:
-            if star != other_star:  # Avoid self-interaction
-                if star.apply_gravitational_force(other_star) == "collide" and star not in collided_stars and other_star not in collided_stars:
-                    collided_stars += [star, other_star]
-                    new_stars.append(Star.merge_stars(star, other_star))
-    
-        # Update position after applying forces
-        star.update_position()
-        if star.is_offscreen():
-            stars.remove(star)
+    if not input_mode:
+        # Update each star's gravitational interaction
+        collided_stars = []
+        new_stars = []
+        for star in stars:
+            for other_star in stars:
+                if star != other_star:  # Avoid self-interaction
+                    if star.apply_gravitational_force(other_star) == "collide" and star not in collided_stars and other_star not in collided_stars:
+                        collided_stars += [star, other_star]
+                        new_stars.append(Star.merge_stars(star, other_star))
+        
+            # Update position after applying forces
+            star.update_position()
+            if star.is_offscreen():
+                stars.remove(star)
 
-    # Remove collided stars and add the new bigger stars
-    for star in collided_stars:
-        if star in stars: stars.remove(star)
-    for star in new_stars:
-        if star not in stars: stars.append(star)
+        # Remove collided stars and add the new bigger stars
+        for star in collided_stars:
+            if star in stars: stars.remove(star)
+        for star in new_stars:
+            if star not in stars: stars.append(star)
 
     # Display
     screen.fill(BLACK)  # Clear the screen with black background
