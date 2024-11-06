@@ -21,6 +21,7 @@ input_position = (0, 0)
 
 # Main simulation loop
 running = True
+pause = False
 clock = pygame.time.Clock()
 
 while running:
@@ -45,34 +46,38 @@ while running:
                         stars.remove(star)
                     
         #keyboard input for mass entry
-        elif event.type == pygame.KEYDOWN and input_mode:
-            if event.key == pygame.K_RETURN:  # Enter key confirms input
-                try:
-                    mass = float(input_text)
-                    if mass >= 1:
-                        # Create a new star with the mass u want
-                        new_star = Star(input_position[0], input_position[1], mass)
-                        stars.append(new_star)
-                    elif mass < 0:
-                        print("Come on, have you ever seen a star with negative mass ?")
-                    else:
-                        mass = 1
-                except ValueError:
-                    print("Please enter a valid number for the mass.")
-                
-                # Exit input mode
-                input_mode = False
-                input_text = ""
-            elif event.key == pygame.K_ESCAPE:  # Escape key cancels input
-                input_mode = False
-                input_text = ""
-            elif event.key == pygame.K_BACKSPACE:  # Handle backspace
-                input_text = input_text[:-1]
+        elif event.type == pygame.KEYDOWN:
+            if input_mode:
+                if event.key == pygame.K_RETURN:  # Enter key confirms input
+                    try:
+                        mass = float(input_text)
+                        if mass >= 1:
+                            # Create a new star with the mass u want
+                            new_star = Star(input_position[0], input_position[1], mass)
+                            stars.append(new_star)
+                        elif mass < 0:
+                            print("Come on, have you ever seen a star with negative mass ?")
+                        else:
+                            mass = 1
+                    except ValueError:
+                        print("Please enter a valid number for the mass.")
+                    
+                    # Exit input mode
+                    input_mode = False
+                    input_text = ""
+                elif event.key == pygame.K_ESCAPE:  # Escape key cancels input
+                    input_mode = False
+                    input_text = ""
+                elif event.key == pygame.K_BACKSPACE:  # Handle backspace
+                    input_text = input_text[:-1]
+                else:
+                    # Append typed character to input text
+                    input_text += event.unicode
             else:
-                # Append typed character to input text
-                input_text += event.unicode
+                if event.key == pygame.K_SPACE:
+                    pause = not pause
 
-    if not input_mode:
+    if not input_mode and not pause:
         # Update each star's gravitational interaction
         collided_stars = []
         new_stars = []
